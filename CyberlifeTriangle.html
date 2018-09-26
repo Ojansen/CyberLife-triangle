@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Test</title>
+<style type="text/css">
+	html body {
+		padding: 0;
+		margin: 0;
+		overflow-x: hidden;
+		overflow-y: hidden;
+		background-color: white;
+	}
+	.template {
+		width: 2060px;
+		flex-flow: row;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	div:nth-last-child(even) {
+		animation-delay: 0.2s;
+	}
+	.triangle-up {
+		width: 0;
+		height: 0;
+		border-left: 50px solid transparent;
+		border-right: 50px solid transparent;
+		border-bottom: 90px solid lightblue;
+		margin-left: -50px;
+	}
+	.triangle-down {
+		width: 0;
+		height: 0;
+		border-left: 50px solid transparent;
+		border-right: 50px solid transparent;
+		border-top: 90px solid darkblue;
+		margin-left: -50px;
+	}
+	.triangle-up:hover, .triangle-down:hover {
+		animation: stop 0s infinite linear;
+		animation-play-state: paused;
+	}
+
+	@keyframes breath {
+		0%  { 	
+			border-bottom-color: #5ac2f2; 
+			border-top-color: #5ac2f2;
+		}
+		10% {
+			border-bottom-color: #42b9f0; 
+			border-top-color: #42b9f0;
+		}
+		20% {
+			border-bottom-color: #2bb0ee; 
+			border-top-color: #2bb0ee;
+		}
+		30% {
+			border-bottom-color: #1faced; 
+			border-top-color: #1faced;
+		}
+		40% {
+		 	border-bottom-color: #13a7ec; 
+			border-top-color: #13a7ec; 
+		}
+		50% {
+			border-bottom-color: #1197d4; 
+			border-top-color: #1197d4;
+		}
+		60% {
+			border-bottom-color: #13a7ec; 
+			border-top-color: #13a7ec;
+		}
+		70% {
+			border-bottom-color: #1faced; 
+			border-top-color: #1faced;
+		}
+		80% {
+			border-bottom-color: #2bb0ee; 
+			border-top-color: #2bb0ee;
+		}
+		90% {
+			border-bottom-color: #42b9f0; 
+			border-top-color: #42b9f0;
+		}
+		100%{ 	
+			border-bottom-color: #5ac2f2; 
+			border-top-color: #5ac2f2; 
+		}
+	}
+	@keyframes stop {
+		0%, 100% {
+			border-color: black;
+			animation-play-state: paused;
+			transition: linear 0.2s;
+		}
+	}
+</style>
+<script
+ src="https://code.jquery.com/jquery-3.3.1.js"
+ integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+ crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+<script type="text/javascript">
+	
+
+// the ways of javascript /////////////////////////////////////////////////////////////////
+// var amount = 1000;
+
+// var box = document.createElement("div");
+// box.classList.add('template');
+// document.getElementsByTagName('body')[0].appendChild(box);
+
+function randomInt() {
+	// console.log(Math.random() * (4 + 1) + 2);
+	return Math.random() * (4 + 1) + 1+"s";
+}
+
+// for (var i = 0; i < amount; i++) {
+// 	var triangleup = document.createElement("div");
+// 	var triangledown = document.createElement("div");
+
+// 	triangleup.classList.add('triangle-up');
+// 	triangleup.style.animation = "breath "+randomInt()+" infinite linear forwards";
+// 	triangledown.style.animation = "breath "+randomInt()+" infinite linear forwards";
+// 	triangledown.classList.add('triangle-down');
+
+// 	box.appendChild(triangleup);
+// 	box.appendChild(triangledown);
+// }
+
+// now created in jqeury //////////////////////////////////////////////////////////////////
+$(function () {
+	let amount = 500;
+	var box = $("<div>").addClass("template");
+	$('body').append(box);
+	for ( let i = 0; i < amount; i++){
+		var triUp = $("<div>").addClass('triangle-up');
+		triUp.css("animation","infinite linear forwards breath "+randomInt());
+		var triDown = $("<div>").addClass('triangle-down');
+		triDown.css("animation","infinite linear forwards breath "+randomInt());
+		box.append(triUp, triDown);
+	}
+});
+	
+
+
+</script>
+
+</body>
+</html>
